@@ -4,6 +4,17 @@ public class Conta {
 	private double saldo;
 	private double limite;
 	
+	private static int numeroIncremental = 1;
+	
+	public static int x() {
+		return 2*2;
+	}
+	
+	public Conta() {
+		this.numero = numeroIncremental;
+		numeroIncremental ++;
+	}
+	
 	public Conta(int numero, double limite) {
 		this(numero, limite, 0);
 	}
