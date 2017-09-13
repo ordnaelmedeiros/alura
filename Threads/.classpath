@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Threads_1_aula02/src"/>
+	<classpathentry kind="src" path="Threads_1_aula03_banheiro/src"/>
+	<classpathentry kind="output" path="Threads_1_aula02/bin"/>
+</classpath>
