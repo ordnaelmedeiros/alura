@@ -26,16 +26,13 @@ public class Pedido {
 	public Calendar getDataFinalizacao() {
 		return dataFinalizacao;
 	}
-	
 
 	public void paga() {
 		status = Status.PAGO;
 	}
-
 	public void finaliza() {
 		dataFinalizacao = Calendar.getInstance();
 		status = Status.ENTREGUE;
 	}
-	
 	
 }
