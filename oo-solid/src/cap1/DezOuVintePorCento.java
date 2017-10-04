@@ -9,5 +9,5 @@ public class DezOuVintePorCento implements RegraDeCalculo {
 			return funcionario.getSalarioBase() * 0.9;
 		}
 	}
-	
+
 }
