@@ -1,2 +1,5 @@
 /bin/
-/caelum.db*
+/caelum.db
+/caelum.db.log
+/caelum.db.properties
+/caelum.db.script
