@@ -1,0 +1,5 @@
+/bin/
+/caelum.db.log
+/caelum.db.properties
+/caelum.db.tmp/
+/caelum.db.script
