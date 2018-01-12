@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Http} from '@angular/http';
 
 @Component({
     selector: 'foto',
@@ -8,5 +9,9 @@ export class FotoComponent {
 
     @Input() titulo;
     @Input() url;
+
+    constructor() {
+
+    }
 
 }
