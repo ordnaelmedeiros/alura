@@ -13,11 +13,15 @@ import { AppComponent }   from './app.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   imports:[
     routing,
     BrowserModule,
     HttpModule,
+    FormsModule,
+    
     FotoModule,
     PainelModule
   ],
