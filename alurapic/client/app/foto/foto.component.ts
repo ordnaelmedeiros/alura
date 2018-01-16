@@ -7,9 +7,10 @@ import {Http} from '@angular/http';
 })
 export class FotoComponent {
 
-    @Input() titulo;
-    @Input() url;
-
+    @Input() titulo:string;
+    @Input() url:string;
+    descricao:string;
+    
     constructor() {
 
     }
