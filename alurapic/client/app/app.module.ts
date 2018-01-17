@@ -1,37 +1,27 @@
 import 'rxjs/add/operator/map';
-
-import { routing } from './app.routes';
-
-import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AppComponent }   from './app.component';
+import { ListagemComponent }   from './listagem/listagem.component';
+import { CadastroComponent }   from './cadastro/cadastro.component';
+import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 import { FotoModule } from './foto/foto.module';
 import { PainelModule } from './painel/painel.module';
-
-import { AppComponent }   from './app.component';
-import { ListagemComponent } from './listagem/listagem.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-
-import { FormsModule } from '@angular/forms';
+import { routing } from './app.routes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports:[
-    routing,
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    
+  imports:      [ 
+    BrowserModule, 
+    HttpModule, 
+    PainelModule, 
     FotoModule,
-    PainelModule
+    routing,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [
-    AppComponent,
-    ListagemComponent,
-    CadastroComponent
-  ],
+  declarations: [ AppComponent, ListagemComponent, CadastroComponent ],
   bootstrap:    [ AppComponent ]
 })
-export class AppModule {
-
-}
+export class AppModule { }

@@ -23,12 +23,10 @@ api.atualiza = function(req, res) {
     console.log('Parâmetro recebido:' + req.params.fotoId);
     db.update({_id : req.params.fotoId }, req.body, function(err, numReplaced) {
         if (err) return console.log(err);
-        if(numReplaced) {
-            res.status(200).end();
-            console.log('Atualizado com sucesso: ' + req.body._id);
-        } else {
-            res.status(500).end();
-        }
+        if(numReplaced) res.status(200).end();
+        res.status(500).end();
+        console.log('Atualizado com sucesso: ' + req.body._id);
+        res.status(200).end();
     });  
 };
 
@@ -52,12 +50,9 @@ api.remove = function(req, res) {
 
     db.remove({ _id: req.params.fotoId }, {}, function (err, numRemoved) {
         if (err) return console.log(err);
-        if(numRemoved) {
-            console.log('removido com sucesso');
-            res.status(200).end();
-        } else {
-            res.status(500).end();
-        }
+        console.log('removido com sucesso');
+        if(numRemoved) res.status(200).end();
+        res.status(500).end();
     });
 };
 

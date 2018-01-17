@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './painel.component.html'
 })
 export class PainelComponent implements OnInit {
-
+    
     @Input() titulo: string;
 
     ngOnInit() {
@@ -14,5 +14,5 @@ export class PainelComponent implements OnInit {
              this.titulo.substr(0, 7) + '...' : 
              this.titulo;
     }
-
+    
 }
