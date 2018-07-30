@@ -18,6 +18,6 @@ sort(table(aulas$course_id))
 
 auxiliar <- count(aulas, vars = "course_id")
 
-write.csv(auxiliar, "popularidade.csv")
+write.csv(auxiliar, "/home/leandro/GitHub/ordnaelmedeiros/alura/R/analisedados/popularidade.csv")
 
 rm(list=ls())
