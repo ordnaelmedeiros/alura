@@ -24,3 +24,16 @@ teste = [misterioso1, misterioso2, misterioso3]
 resultado = modelo.predict(teste)
 
 print(resultado)
+
+marcacoes_teste = [-1, 1, -1]
+
+diferencas = resultado - marcacoes_teste
+print(diferencas)
+
+acertos = [d for d in diferencas if d==0]
+
+total_de_acertos = len(acertos)
+total_de_elementos = len(teste)
+taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
+
+print(taxa_de_acerto)
