@@ -4,14 +4,28 @@ import pandas as pd
 from collections import Counter
 import numpy as np
 from sklearn.cross_validation import cross_val_score
+import nltk
 
-classificacoes = pd.read_csv('emails.csv')
+texto1 = "Se eu comprar cinco anos antecipados, eu ganho algum desconto?"
+texto2 = "O exercício 15 do curso de Java 1 está com a resposta errada. Pode conferir pf?"
+texto3 = "Existe algum curso para cuidar do marketing da minha empresa?"
+
+classificacoes = pd.read_csv('emails.csv', encoding = 'utf-8')
 textosPuros = classificacoes['email']
-textosQuebrados = textosPuros.str.lower().str.split(' ')
+frases = textosPuros.str.lower()
+textosQuebrados = [nltk.tokenize.word_tokenize(frase) for frase in frases]
+
+stopwords = nltk.corpus.stopwords.words('portuguese')
+
+stemmer = nltk.stem.RSLPStemmer()
+
 dicionario = set()
 
 for lista in textosQuebrados:
-    dicionario.update(lista)
+    validas = [stemmer.stem(palavra) for palavra in lista if palavra not in stopwords and len(palavra) > 2]
+    dicionario.update(validas)
+
+print dicionario
 
 totalDePalavras = len(dicionario)
 tuplas = zip(dicionario, xrange(totalDePalavras))
@@ -21,14 +35,18 @@ print totalDePalavras
 def vetorizar_texto(texto, tradutor):
     vetor = [0] * len(tradutor)
     for palavra in texto:
-        if palavra in tradutor:
-            posicao = tradutor[palavra]
-            vetor[posicao] += 1
+        if len(palavra) > 0:
+            raiz = stemmer.stem(palavra)
+            if raiz in tradutor:
+                posicao = tradutor[raiz]
+                vetor[posicao] += 1
 
     return vetor
 
 vetoresDeTexto = [vetorizar_texto(texto, tradutor) for texto in textosQuebrados]
 marcas = classificacoes['classificacao']
+print vetoresDeTexto[0]
+
 
 X = np.array(vetoresDeTexto)
 Y = np.array(marcas.tolist())
@@ -79,7 +97,7 @@ resultados[resultadoOneVsRest] = modeloOneVsRest
 from sklearn.multiclass import OneVsOneClassifier
 modeloOneVsOne = OneVsOneClassifier(LinearSVC(random_state = 0))
 resultadoOneVsOne = fit_and_predict("OneVsOne", modeloOneVsOne, treino_dados, treino_marcacoes)
-resultados[resultadoOneVsOne] = modeloOneVsOne 
+resultados[resultadoOneVsOne] = modeloOneVsOne
 
 from sklearn.naive_bayes import MultinomialNB
 modeloMultinomial = MultinomialNB()
@@ -87,7 +105,7 @@ resultadoMultinomial = fit_and_predict("MultinomialNB", modeloMultinomial, trein
 resultados[resultadoMultinomial] = modeloMultinomial
 
 from sklearn.ensemble import AdaBoostClassifier
-modeloAdaBoost = AdaBoostClassifier()
+modeloAdaBoost = AdaBoostClassifier(random_state=0)
 resultadoAdaBoost = fit_and_predict("AdaBoostClassifier", modeloAdaBoost, treino_dados, treino_marcacoes)
 resultados[resultadoAdaBoost] = modeloAdaBoost
 
@@ -108,4 +126,5 @@ taxa_de_acerto_base = 100.0 * acerto_base / len(validacao_marcacoes)
 print("Taxa de acerto base: %f" % taxa_de_acerto_base)
 
 total_de_elementos = len(validacao_dados)
+
 print("Total de teste: %d" % total_de_elementos)
